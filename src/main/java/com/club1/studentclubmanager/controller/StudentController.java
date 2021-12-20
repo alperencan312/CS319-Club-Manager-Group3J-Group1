@@ -20,7 +20,7 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Student>> getAllUsers(){
+    public ResponseEntity<List<Student>> getAllStudents(){
         List<Student> students = studentService.findAllStudents();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
@@ -35,5 +35,17 @@ public class StudentController {
     public ResponseEntity<Student> addStudent(@RequestBody Student student){
         Student newStudent = studentService.addStudent(student);
         return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student){
+        Student updatedStudent = studentService.updateStudent(student);
+        return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id){
+        studentService.deleteStudentById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

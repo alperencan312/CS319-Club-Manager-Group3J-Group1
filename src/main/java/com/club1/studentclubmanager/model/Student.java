@@ -26,15 +26,28 @@ public class Student implements Serializable {
 
 
     // NOTE THAT ADDING STUDENT TO STUDENT TABLE WILL CREATE A USER IN USER TABLE
-    @JoinColumn(name="user_id", unique = true, referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
     private User user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "school_id")
+    private School school;
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 
     public Student(){
 
     }
-    public Student(User user) {
+    public Student(User user, School school) {
         this.user = user;
+        this.school = school;
     }
 
     public Long getId() {

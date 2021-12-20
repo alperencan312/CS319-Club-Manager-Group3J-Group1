@@ -15,18 +15,19 @@ public class User implements Serializable {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String school;
+
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Student student;
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, String school) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.school = school;
     }
 
     public Long getId() {
@@ -45,9 +46,6 @@ public class User implements Serializable {
         return password;
     }
 
-    public String getSchool() {
-        return school;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -65,9 +63,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
 
     @Override
     public String toString() {
@@ -76,7 +71,6 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", school='" + school + '\'' +
                 '}';
     }
 }
