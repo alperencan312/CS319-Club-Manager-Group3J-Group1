@@ -18,7 +18,7 @@ public class School {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, unique = true)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -29,6 +29,9 @@ public class School {
 
     @OneToMany(mappedBy = "school",targetEntity = Student.class, cascade = CascadeType.ALL)
     private List<Student> students;
+
+    @OneToMany(mappedBy = "school",targetEntity = Club.class, cascade = CascadeType.ALL)
+    private List<Club> clubs;
 
     public School() {
     }

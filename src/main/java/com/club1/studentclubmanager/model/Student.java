@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -33,6 +34,11 @@ public class Student implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "school_id")
     private School school;
+
+    @ManyToMany()
+    @JoinTable(name = "membership", joinColumns = { @JoinColumn(name="student_id")},
+        inverseJoinColumns = {@JoinColumn(name="club_id")})
+    private List<Club> clubs;
 
     public School getSchool() {
         return school;

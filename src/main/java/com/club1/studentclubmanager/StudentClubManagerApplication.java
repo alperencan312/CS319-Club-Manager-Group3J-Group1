@@ -25,7 +25,7 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 		// NOTE THAT ADDING STUDENT REPOSITORY ALSO CHANGES USER REPOSITORY.
 		/*
 		Student student = new Student();
-		User user = new User(21505215L, "Ali Güneş", "ali.gunes@bilkent.edu.tr", "ali1234", "Bilkent University");
+		User user = new User(21505215L, "Ali Güneş", "ali.gunes@bilkent.edu.tr", "ali1234");
 
 		student.setUser(user);
 
