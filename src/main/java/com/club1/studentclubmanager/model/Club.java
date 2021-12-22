@@ -57,6 +57,11 @@ public class Club {
     @OneToMany(mappedBy = "club", targetEntity = Announcement.class, cascade = CascadeType.ALL)
     private List<Announcement> announcements;
 
+    @ManyToMany()
+    @JoinTable(name = "club_keywords", joinColumns = { @JoinColumn(name="club_id")},
+            inverseJoinColumns = {@JoinColumn(name="keyword_id")})
+    private List<Keyword> keywords;
+
     public Club(){
 
     }
