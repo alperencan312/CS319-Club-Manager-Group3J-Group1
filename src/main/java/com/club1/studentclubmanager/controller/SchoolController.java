@@ -19,7 +19,7 @@ public class SchoolController {
     }
 
     @GetMapping
-    public ResponseEntity<List<School>> getAllUsers(){
+    public ResponseEntity<List<School>> getAllSchools(){
         List<School> schools = schoolService.findAllSchools();
         return new ResponseEntity<>(schools, HttpStatus.OK);
     }

@@ -20,7 +20,7 @@ public class ClubController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Club>> getAllUsers(){
+    public ResponseEntity<List<Club>> getAllClubs(){
         List<Club> clubs = clubService.findAllClubs();
         return new ResponseEntity<>(clubs, HttpStatus.OK);
     }

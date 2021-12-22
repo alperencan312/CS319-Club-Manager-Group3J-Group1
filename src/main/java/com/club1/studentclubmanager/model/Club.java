@@ -7,6 +7,10 @@ import java.util.List;
 @Table(name= "club")
 public class Club {
 
+    /**
+     * Add leader, add co-leader düzenle.
+     * Bunlar eklendiğinde member olup olmadığına bak.
+     */
     @Id
     @SequenceGenerator(
             name = "club_sequence",
@@ -46,6 +50,12 @@ public class Club {
 
     @ManyToMany(mappedBy = "clubs")
     private List<Student> students;
+
+    @OneToMany(mappedBy = "club", targetEntity = Event.class, cascade = CascadeType.ALL)
+    private List<Event> events;
+
+    @OneToMany(mappedBy = "club", targetEntity = Announcement.class, cascade = CascadeType.ALL)
+    private List<Announcement> announcements;
 
     public Club(){
 
