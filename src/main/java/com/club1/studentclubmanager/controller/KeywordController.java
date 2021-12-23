@@ -35,9 +35,9 @@ public class KeywordController {
         return new ResponseEntity<>(newKeyword, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Keyword> updateKeyword(@RequestBody Keyword keyword){
-        Keyword updatedKeyword = keywordService.updateKeyword(keyword);
+    @PutMapping("{id}")
+    public ResponseEntity<Keyword> updateKeyword(@PathVariable("id") Long id, @RequestBody Keyword keyword){
+        Keyword updatedKeyword = keywordService.updateKeyword(keyword, id);
         return new ResponseEntity<>(updatedKeyword, HttpStatus.OK);
     }
 

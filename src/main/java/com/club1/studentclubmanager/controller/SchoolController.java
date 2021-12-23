@@ -36,9 +36,9 @@ public class SchoolController {
         return new ResponseEntity<>(newSchool, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<School> updateSchool(@RequestBody School school){
-        School updatedSchool = schoolService.updateSchool(school);
+    @PutMapping("{id}")
+    public ResponseEntity<School> updateSchool(@PathVariable("id") Long id, @RequestBody School school){
+        School updatedSchool = schoolService.updateSchool(school, id);
         return new ResponseEntity<>(updatedSchool, HttpStatus.OK);
     }
 

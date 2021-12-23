@@ -2,6 +2,9 @@ package com.club1.studentclubmanager;
 
 import com.club1.studentclubmanager.model.*;
 import com.club1.studentclubmanager.repo.*;
+import com.club1.studentclubmanager.service.ClubService;
+import com.club1.studentclubmanager.service.SchoolService;
+import com.club1.studentclubmanager.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +21,7 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 		SpringApplication.run(StudentClubManagerApplication.class, args);
 	}
 
+
 	@Autowired
 	private StudentRepository studentRepository;
 
@@ -32,6 +36,15 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 
 	@Autowired
 	private AnnouncementRepository announcementRepository;
+
+	@Autowired
+	private SchoolService schoolService;
+
+	@Autowired
+	private ClubService clubService;
+
+	@Autowired
+	private StudentService studentService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -78,7 +91,32 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 		Timestamp timestamp = Timestamp.from(Instant.now());
 		Announcement announcement = new Announcement("Mr. Tuzun will make a presentation today", timestamp, club);
 		announcementRepository.save(announcement);
-		*/
+
+
+		--------------3----------------------------
+
+		School school = schoolService.findSchoolById(9L);
+		//schoolService.addSchool(school);
+		System.out.println(school.getSchoolName());
+
+		Student student = new Student();
+		User user = new User(20991659L, "mehmet can", "mehmet.can@bilkent.edu.tr", "mehmet1234");
+		student.setUser(user);
+		student.setSchool(school);
+
+		this.studentRepository.save(student);
+		Club club = new Club("YES", "This is a nice clubss.", "techss", "YESssss club logo", school, student, student);
+		clubService.addClub(club);
+
+
+
+		Student student = studentService.findStudentById(8L);
+		School school = schoolService.findSchoolById(4L);
+		Club club = new Club("hey", "Nice", "techhh", "hiii club logo", school, student, student);
+		//clubService.addClub(club);
+		//studentService.deleteStudentById(10L);
+		//clubService.updateClub(club, 3L);
+*/
 
 	}
 

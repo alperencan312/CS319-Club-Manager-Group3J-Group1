@@ -72,6 +72,14 @@ public class Student implements Serializable {
         this.user = user;
     }
 
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
     @Override
     public String toString() {
         return "Student{" +

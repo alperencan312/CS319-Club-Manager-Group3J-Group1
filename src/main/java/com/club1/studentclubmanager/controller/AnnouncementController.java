@@ -30,14 +30,14 @@ public class AnnouncementController {
     }
 
     @PostMapping
-    public ResponseEntity<Announcement> addannouncement(@RequestBody Announcement announcement){
+    public ResponseEntity<Announcement> addAnnouncement(@RequestBody Announcement announcement){
         Announcement newAnnouncement = announcementService.addAnnouncement(announcement);
         return new ResponseEntity<>(newAnnouncement, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Announcement> updateAnnouncement(@RequestBody Announcement announcement){
-        Announcement updatedAnnouncement = announcementService.updateAnnouncement(announcement);
+    @PutMapping("{id}")
+    public ResponseEntity<Announcement> updateAnnouncement(@PathVariable("id") Long id, @RequestBody Announcement announcement){
+        Announcement updatedAnnouncement = announcementService.updateAnnouncement(announcement, id);
         return new ResponseEntity<>(updatedAnnouncement, HttpStatus.OK);
     }
 

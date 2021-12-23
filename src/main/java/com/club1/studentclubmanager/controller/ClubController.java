@@ -37,9 +37,9 @@ public class ClubController {
         return new ResponseEntity<>(newClub, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Club> updateclub(@RequestBody Club club){
-        Club updatedClub = clubService.updateClub(club);
+    @PutMapping("{id}")
+    public ResponseEntity<Club> updateClub(@PathVariable("id") Long id, @RequestBody Club club){
+        Club updatedClub = clubService.updateClub(club, id);
         return new ResponseEntity<>(updatedClub, HttpStatus.OK);
     }
 

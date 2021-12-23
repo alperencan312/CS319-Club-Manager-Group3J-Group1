@@ -4,7 +4,7 @@ package com.club1.studentclubmanager.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name="school")
 @Table(name="school")
 public class School {
 

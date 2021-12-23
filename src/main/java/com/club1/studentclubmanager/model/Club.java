@@ -3,7 +3,7 @@ package com.club1.studentclubmanager.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "club")
 @Table(name= "club")
 public class Club {
 
