@@ -48,7 +48,7 @@ public class Club {
     @JoinColumn(name="coLeader_student_id")
     private Student clubCoLeader;
 
-    @ManyToMany(mappedBy = "clubs")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "clubs")
     private List<Student> students;
 
     @OneToMany(mappedBy = "club", targetEntity = Event.class, cascade = CascadeType.ALL)
@@ -66,7 +66,7 @@ public class Club {
 
     }
 
-    public Club(String name, String info, String type, String clubLogo, School school, Student clubLeader, Student clubCoLeader) {
+    public Club(String name, String info, String type, String clubLogo, School school, Student clubLeader, Student clubCoLeader, List<Keyword> keywords) {
         this.name = name;
         this.info = info;
         this.type = type;
@@ -74,6 +74,7 @@ public class Club {
         this.school = school;
         this.clubLeader = clubLeader;
         this.clubCoLeader = clubCoLeader;
+        this.keywords = keywords;
     }
 
     public Long getId() {
@@ -138,5 +139,37 @@ public class Club {
 
     public void setClubCoLeader(Student clubCoLeader) {
         this.clubCoLeader = clubCoLeader;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public List<Announcement> getAnnouncements() {
+        return announcements;
+    }
+
+    public void setAnnouncements(List<Announcement> announcements) {
+        this.announcements = announcements;
+    }
+
+    public List<Keyword> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<Keyword> keywords) {
+        this.keywords = keywords;
     }
 }

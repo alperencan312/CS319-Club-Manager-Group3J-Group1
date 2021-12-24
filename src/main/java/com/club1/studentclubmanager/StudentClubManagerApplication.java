@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -48,9 +49,6 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		// EXAMPLE OF ADDING STUDENT REPOSITORY
-		// NOTE THAT ADDING STUDENT REPOSITORY ALSO CHANGES USER REPOSITORY.
 
 /*
 ------------1------------------
@@ -116,8 +114,25 @@ public class StudentClubManagerApplication implements CommandLineRunner {
 		//clubService.addClub(club);
 		//studentService.deleteStudentById(10L);
 		//clubService.updateClub(club, 3L);
-*/
 
+
+		Student student = studentService.findStudentById(8L);
+		Club club = clubService.findClubById(7L);
+		club.getStudents().add(student);
+		System.out.println(club.getStudents());
+		student.getClubs().add(club);
+		studentService.updateStudent(student, 8L);
+
+
+		Student student = new Student();
+		User user = new User(21199522L, "eray tüzün", "eray.tüzün@bilkent.edu.tr", "eray1234");
+		School school = schoolService.findSchoolById(4L);
+		student.setUser(user);
+		student.setSchool(school);
+
+		this.studentService.addStudent(student);
+
+ */
 	}
 
 

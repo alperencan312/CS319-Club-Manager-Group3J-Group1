@@ -1,10 +1,11 @@
 package com.club1.studentclubmanager.service;
 
 import com.club1.studentclubmanager.exception.CustomNotFoundException;
-import com.club1.studentclubmanager.model.Club;
 import com.club1.studentclubmanager.model.Student;
+import com.club1.studentclubmanager.model.User;
 import com.club1.studentclubmanager.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,16 @@ public class StudentService {
     }
 
     public Student addStudent(Student student){
+        // Scenario of registration for now.
+        // Since registration is not implemented in front-end for now, addStudent method will be used to add Students.
+        // Passwords are stored in encrypted database.
+        User user = student.getUser();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+        student.setUser(user);
+
         return studentRepository.save(student);
     }
 
@@ -37,6 +48,7 @@ public class StudentService {
 
         existingStudent.setSchool(student.getSchool());
         existingStudent.setUser(student.getUser());
+        existingStudent.setClubs(student.getClubs());
 
         return studentRepository.save(existingStudent);
     }

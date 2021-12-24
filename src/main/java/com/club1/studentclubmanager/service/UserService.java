@@ -5,8 +5,11 @@ import com.club1.studentclubmanager.model.Club;
 import com.club1.studentclubmanager.model.User;
 import com.club1.studentclubmanager.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -23,6 +26,13 @@ public class UserService {
     }
 
     public List<User> findAllUsers(){
+        /**
+         * This is just an example of how to get information of currently logged-in user.
+         * It will be implemented to front-end.
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
+        System.out.println(userDetails.getUsername());
+         */
         return userRepository.findAll();
     }
 

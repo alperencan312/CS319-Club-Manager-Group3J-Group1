@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "student")
@@ -27,7 +28,7 @@ public class Student implements Serializable {
 
 
     // NOTE THAT ADDING STUDENT TO STUDENT TABLE WILL CREATE A USER IN USER TABLE
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name="user_id")
     private User user;
 
@@ -35,7 +36,7 @@ public class Student implements Serializable {
     @JoinColumn(name = "school_id")
     private School school;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "membership", joinColumns = { @JoinColumn(name="student_id")},
         inverseJoinColumns = {@JoinColumn(name="club_id")})
     private List<Club> clubs;
@@ -51,10 +52,14 @@ public class Student implements Serializable {
     public Student(){
 
     }
+
     public Student(User user, School school) {
         this.user = user;
         this.school = school;
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -86,5 +91,18 @@ public class Student implements Serializable {
                 "id=" + id +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return id.equals(student.id) && Objects.equals(user, student.user) && school.equals(student.school) && Objects.equals(clubs, student.clubs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, school, clubs);
     }
 }

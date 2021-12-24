@@ -7,6 +7,8 @@ import com.club1.studentclubmanager.model.School;
 import com.club1.studentclubmanager.repo.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -18,6 +20,10 @@ public class EventService {
     }
 
     public Event addEvent(Event event){
+        // Event date is checked.
+        if ( !isEventEligible(event))
+            return null;
+
         return eventRepository.save(event);
     }
 
@@ -26,15 +32,22 @@ public class EventService {
     }
 
     public Event updateEvent(Event event, Long id){
-        // Check if the school exists
+
+        // event date is checked
+        if ( !isEventEligible(event))
+            return null;
+
+        // Check if the event exists
         Event existingEvent = eventRepository.findById(id).
                 orElseThrow(() -> new CustomNotFoundException("Event by id "+ id + " was not found"));
+
 
         existingEvent.setName(event.getName());
         existingEvent.setInfo(event.getInfo());
         existingEvent.setClub(event.getClub());
         existingEvent.setDate(event.getDate());
         existingEvent.setLocation(event.getLocation());
+        existingEvent.setDuration(event.getDuration());
 
         return eventRepository.save(existingEvent);
     }
@@ -49,5 +62,15 @@ public class EventService {
             throw new CustomNotFoundException("Event by id " + id + " was not found");
         }
         eventRepository.deleteById(id);
+    }
+
+    public boolean isEventEligible(Event event){
+        // If event date is before the time event is created, return false.
+        if ( event.getDate().before(Timestamp.from(Instant.now()))){
+            System.out.println("Date cannot be before now.");
+            return false;
+        }
+        return true;
+
     }
 }

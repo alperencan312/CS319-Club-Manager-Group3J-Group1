@@ -36,15 +36,19 @@ public class Event {
     @JoinColumn(name = "club_id")
     private Club club;
 
+    @Column(nullable = true)
+    private String duration;
+
     public Event(){
 
     }
-    public Event(String name, Timestamp date, String location, String info, Club club) {
+    public Event(String name, Timestamp date, String location, String info, Club club, String duration) {
         this.name = name;
         this.date = date;
         this.location = location;
         this.info = info;
         this.club = club;
+        this.duration = duration;
     }
 
     public Long getId() {
@@ -93,5 +97,13 @@ public class Event {
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
