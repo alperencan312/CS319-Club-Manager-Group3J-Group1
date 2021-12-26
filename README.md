@@ -1,3 +1,4 @@
+# Note that this final branch is a combination of master branch and frontend-react branch. Seperate projects can be found on those branches.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
