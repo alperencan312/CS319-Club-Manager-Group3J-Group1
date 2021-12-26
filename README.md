@@ -1,4 +1,70 @@
-# CS319-Club-Manager-Group3J-Group1
-Student clubs are possibly one of the most important parts of a university. These clubs provide students with opportunities to have friendships, enrich their lives as a student and gain skills and experience in leadership, communication. We, therefore, propose a web-based Student Club Management System that will facilitate the participation of students in student clubs and their follow-up to the club activities. Moreover, club managers will have an opportunity to control their clubs and activities. Therefore, the system will be developed to make both students’ and club managers’ lives easier.
+# Getting Started with Create React App
 
-Club1.com aims to provide a well-organized and user-friendly interface to students, in order to facilitate their membership operations for student clubs. Students are able to view all of the student clubs operating in their university, attend their activities, be informed about their fundamental purposes, and be a member of them. Students can also create calendars for themselves by including their courses, planned other activities and club events to be able to manage their schedules easily. Furthermore, the system provides every student with the opportunity of creating a club if their request is approved by the student affairs. Having created the club, club owners can assign management roles to students who want to take part in the club. Club managers can explain the aim of their clubs, create club activities, and organize club members by using Club1.com. Ultimately, Club1.com is planned to have at least the following features: Student and Club Profiles, Club Search and Creation, Organization of Club Activities, Club Membership Operations, Club Information, Upcoming Activities and Announcements, Personal and Club Calendars, Messages and Friendships.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
