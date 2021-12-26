@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/schools")
+@CrossOrigin(origins = "*")
 public class SchoolController {
     private final SchoolService schoolService;
 
@@ -21,6 +22,12 @@ public class SchoolController {
     @GetMapping
     public ResponseEntity<List<School>> getAllSchools(){
         List<School> schools = schoolService.findAllSchools();
+        return new ResponseEntity<>(schools, HttpStatus.OK);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<School>> getAllForFrontEnd(){
+        List<School> schools = schoolService.findAllForFrontEnd();
         return new ResponseEntity<>(schools, HttpStatus.OK);
     }
 

@@ -27,7 +27,7 @@ public class ClubService {
         if ( !isClubEligible(club))
             return null;
 
-        School school = club.getSchool();
+        School school = club.getClubLeader().getSchool();
 
         // Check if the club name exists in same school.
         Optional<Club> c = clubRepository.findClubByNameInSameSchool(club.getName(), school);
@@ -64,7 +64,7 @@ public class ClubService {
         if ( !isClubEligible(club))
             return null;
 
-        School school = club.getSchool();
+       School school = club.getClubLeader().getSchool();
         // Check that the name of the club is not the same with any other club in the same school.
         Optional<Club> c = clubRepository.findClubByNameInSameSchool(club.getName(), school);
         if ( c.isPresent() && (c.get() != existingClub)){
@@ -81,7 +81,7 @@ public class ClubService {
         existingClub.setName(club.getName());
         existingClub.setType(club.getType());
         existingClub.setInfo(club.getInfo());
-        existingClub.setSchool(club.getSchool());
+        existingClub.setSchool(club.getClubLeader().getSchool());
         existingClub.setClubLogo(club.getClubLogo());
         existingClub.setClubLeader(club.getClubLeader());
         existingClub.setClubCoLeader(club.getClubCoLeader());
@@ -127,13 +127,13 @@ public class ClubService {
     // Returns ture if club leader and co-leader are from the same school with the club's school.
     public boolean isClubEligible(Club club){
         // Club leader cannot be from another school
-        if ( club.getClubLeader().getSchool() != club.getSchool()){
+        if ( club.getClubLeader().getSchool() != club.getClubLeader().getSchool()){
             System.out.println("Error, Club leader cannot be from another school!");
             return false;
         }
 
         // Club co-leader cannot be from another school
-        if (club.getClubCoLeader().getSchool() != club.getSchool()){
+        if (club.getClubCoLeader().getSchool() != club.getClubLeader().getSchool()){
             System.out.println("Error, Club co-leader cannot be from another school!");
             return false;
         }

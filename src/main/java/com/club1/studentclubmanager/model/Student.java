@@ -1,7 +1,9 @@
 package com.club1.studentclubmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -32,14 +34,32 @@ public class Student implements Serializable {
     @JoinColumn(name="user_id")
     private User user;
 
+    @Column(nullable = false)
+    private String profileImg;
+
+    @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "school_id")
     private School school;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "membership", joinColumns = { @JoinColumn(name="student_id")},
         inverseJoinColumns = {@JoinColumn(name="club_id")})
     private List<Club> clubs;
+
+    private String contactName;
+
+    public Student(){
+
+    }
+
+    public Student(User user, School school, String profileImg) {
+        this.user = user;
+        this.school = school;
+        this.profileImg = profileImg;
+    }
+
 
     public School getSchool() {
         return school;
@@ -48,18 +68,6 @@ public class Student implements Serializable {
     public void setSchool(School school) {
         this.school = school;
     }
-
-    public Student(){
-
-    }
-
-    public Student(User user, School school) {
-        this.user = user;
-        this.school = school;
-    }
-
-
-
 
     public Long getId() {
         return id;
@@ -77,6 +85,15 @@ public class Student implements Serializable {
         this.user = user;
     }
 
+    @JsonProperty("contactImg")
+    public String getProfileImg() {
+        return profileImg;
+    }
+
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
+    }
+
     public List<Club> getClubs() {
         return clubs;
     }
@@ -84,6 +101,12 @@ public class Student implements Serializable {
     public void setClubs(List<Club> clubs) {
         this.clubs = clubs;
     }
+
+    @JsonProperty("contactName")
+    public String getContactName(){
+        return this.user.getName();
+    }
+
 
     @Override
     public String toString() {

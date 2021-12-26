@@ -1,5 +1,8 @@
 package com.club1.studentclubmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -47,6 +50,7 @@ public class Announcement {
         this.id = id;
     }
 
+    @JsonProperty("announcmentDesc")
     public String getAnnouncementInfo() {
         return announcementInfo;
     }
@@ -55,6 +59,7 @@ public class Announcement {
         this.announcementInfo = announcementInfo;
     }
 
+    @JsonProperty("sent")
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -63,6 +68,7 @@ public class Announcement {
         this.created_at = created_at;
     }
 
+    @JsonIgnore
     public Club getClub() {
         return club;
     }

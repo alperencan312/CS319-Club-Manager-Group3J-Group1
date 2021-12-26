@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/keywords")
+@CrossOrigin("*")
 public class KeywordController {
     private final KeywordService keywordService;
 

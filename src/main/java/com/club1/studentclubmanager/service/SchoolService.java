@@ -21,6 +21,10 @@ public class SchoolService {
         return schoolRepository.findAll();
     }
 
+    public List<School> findAllForFrontEnd(){
+        return schoolRepository.findFront();
+    }
+
     // School name and logo must be unique to be added to the database.
     public School addSchool(School school){
         // Check if the school.getName() exists in database, if exists, don't add it to the database
@@ -67,6 +71,7 @@ public class SchoolService {
 
         existingSchool.setSchoolName(school.getSchoolName());
         existingSchool.setLogo(school.getLogo());
+        existingSchool.setBgImage(school.getBgImage());
         return schoolRepository.save(existingSchool);
     }
 

@@ -1,5 +1,8 @@
 package com.club1.studentclubmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -39,6 +42,15 @@ public class Event {
     @Column(nullable = true)
     private String duration;
 
+    @Column(nullable = true)
+    private String priority;
+
+    private Long clubId;
+
+    private String clubLogo;
+
+    private String time;
+
     public Event(){
 
     }
@@ -51,6 +63,7 @@ public class Event {
         this.duration = duration;
     }
 
+    @JsonProperty("activityId")
     public Long getId() {
         return id;
     }
@@ -59,6 +72,7 @@ public class Event {
         this.id = id;
     }
 
+    @JsonProperty("title")
     public String getName() {
         return name;
     }
@@ -67,6 +81,7 @@ public class Event {
         this.name = name;
     }
 
+    @JsonProperty("start")
     public Timestamp getDate() {
         return date;
     }
@@ -83,6 +98,7 @@ public class Event {
         this.location = location;
     }
 
+    @JsonProperty("information")
     public String getInfo() {
         return info;
     }
@@ -91,19 +107,46 @@ public class Event {
         this.info = info;
     }
 
+    @JsonProperty("clubId")
+    public Long getClubsId(){
+        return this.club.getId();
+    }
+
+    @JsonIgnore
     public Club getClub() {
         return club;
+    }
+
+    public Long getClubId(){
+        return this.getClub().getId();
     }
 
     public void setClub(Club club) {
         this.club = club;
     }
 
+    @JsonProperty("url")
+    public String getClubLogo(){
+        return this.getClub().getClubLogo();
+    }
+
+    @JsonProperty("time")
+    public String getTime(){
+        return String.valueOf(this.getDate().getTime());
+    }
     public String getDuration() {
         return duration;
     }
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }
